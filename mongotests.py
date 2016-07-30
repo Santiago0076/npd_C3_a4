@@ -16,7 +16,7 @@ my_coll = client.get_database(MY_DB).get_collection(MY_COLL)
 
 #Replace with your module's name
 try:
-  from exercise.py import find_object, update_object, remove_object
+  from exercise1.py import find_object, update_object, remove_object
 except ImportError:
   from warnings import warn
   warn('Failed to import library!')
@@ -33,8 +33,8 @@ class MongoTests(TestCase):
     my_coll.create_index(MY_PRIMARY_KEY_NAME, unique=True)
 
   def test_insert(self):
-    my_object = dict()
-    my_object[MY_PRIMARY_KEY_NAME] = 'my_key'
+    my_obj = dict()
+    my_obj[MY_PRIMARY_KEY_NAME] = 'my_key'
     update_object(my_obj)
     my_db_obj = my_coll.find_one(my_obj, {'_id': 0})
     self.assertEquals(my_obj, my_db_obj)
